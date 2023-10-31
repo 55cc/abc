@@ -55,6 +55,7 @@ jobs:
           GIT_NAME: ${{ secrets.GIT_NAME }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
         #   SSH_KEY: ${{ secrets.DK }}
+          token: ""
         run: |     
           git config  --global user.email "$GIT_EMAIL"
           git config  --global user.name "$GIT_NAME"
