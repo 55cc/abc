@@ -36,3 +36,14 @@ jobs:
           echo test, and deploy your project.
           cat ./zun.sh
           bash ./zun.sh
+      - name: GIT
+        run: |     
+          echo "$GIT_NAME $GIT_EMAIL $USER"
+
+
+          git config user.email "$GIT_EMAIL"
+          git config user.name "$GIT_NAME"
+          git add .
+          git commit -m "$msg";
+          git push https://$USER:$PSWD@github.com/$USER/abc
+
