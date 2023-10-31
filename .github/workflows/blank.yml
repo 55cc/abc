@@ -24,6 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.DK }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -48,7 +50,7 @@ jobs:
         env:
           GIT_NAME: ${{ secrets.GIT_NAME }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-          token: ${{ secrets.DK }}
+       
         run: |     
           echo "$GIT_NAME $GIT_EMAIL $USER"
           git config  --global user.email "$GIT_EMAIL"
