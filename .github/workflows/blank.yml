@@ -42,11 +42,13 @@ jobs:
       - name: git-ssh
         env:
           HOST: github.com
-        
+          SSH_KEY: ${{ secrets.DK }}
         run: |
           mkdir -p ~/.ssh/
+          echo -e "$SSH_KEY" > ~/.ssh/private.key
+          cat ~/.ssh/private.key
+          chmod 666 ~/.ssh/private.key
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-#   echo -e "$SSH_KEY" > ~/.ssh/key
 
       - name: GIT
         env:
