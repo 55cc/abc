@@ -57,5 +57,5 @@ jobs:
           git add .
           msg=$(date)
           git commit -m "$msg";
-          git push "https\:\/\/$USER\:$PSWD\@github.com\/$USER\/abc"
+          git push "https://$USER:$PSWD@github.com/$USER/abc"
 
