@@ -45,11 +45,12 @@ jobs:
           SSH_KEY: ${{ secrets.DK }}
         run: |
           mkdir -p ~/.ssh/
-          echo -e "$SSH_KEY" > ~/.ssh/private.key
+          echo -e "$SSH_KEY" > ~/.ssh/key
           cat ~/.ssh/private.key
-          chmod 666 ~/.ssh/private.key
-          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-          ssh -T 55cc@github.com
+          chmod 666 ~/.ssh/key
+
+# ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+# ssh -T 55cc@github.com
 
       - name: GIT
         env:
