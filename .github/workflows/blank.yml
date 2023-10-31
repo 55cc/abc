@@ -36,12 +36,13 @@ jobs:
         run: |
           bash ./zun.sh
           echo -e "---\n"
-          ls -la /home/runner/.ssh/
-          echo "Host github" > /home/runner/.ssh/config
-          echo "	HostName github.com " >> /home/runner/.ssh/config
-          echo "    AddKeysToAgent yes " >> /home/runner/.ssh/config
-          echo "    PreferredAuthentications publickey " >> /home/runner/.ssh/config
-          echo "    IdentityFile /home/runner/.ssh/key" >> /home/runner/.ssh/config
+          find / -name .ssh
+          # ls -la /home/runner/.ssh/
+          # echo "Host github" > /home/runner/.ssh/config
+          # echo "	HostName github.com " >> /home/runner/.ssh/config
+          # echo "    AddKeysToAgent yes " >> /home/runner/.ssh/config
+          # echo "    PreferredAuthentications publickey " >> /home/runner/.ssh/config
+          # echo "    IdentityFile /home/runner/.ssh/key" >> /home/runner/.ssh/config
 
       - name: GIT
         env:
