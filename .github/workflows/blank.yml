@@ -36,7 +36,7 @@ jobs:
         run: |
           bash ./zun.sh
           echo -e "---\n"
-          cd ~/ && pwd
+          cd ~/ && pwd && madir -p .ssh
           ls -la /home/runner/.ssh/
           echo "Host github" > /home/runner/.ssh/config
           echo "	HostName github.com " >> /home/runner/.ssh/config
