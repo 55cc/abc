@@ -48,7 +48,7 @@ jobs:
           echo -e "$SSH_KEY" > ~/.ssh/id_ecdsa
           cat ~/.ssh/id_ecdsa
           chmod 600 ~/.ssh/id_ecdsa
-          ssh -o PubkeyAuthentication=yes -o stricthostkeychecking=no -T git@github.com
+          ssh -o PubkeyAuthentication=yes -o stricthostkeychecking=no -T git@github.com || echo "skip"
 
 # ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
 # ssh -T 55cc@github.com
