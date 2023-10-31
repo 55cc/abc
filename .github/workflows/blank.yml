@@ -45,9 +45,9 @@ jobs:
           SSH_KEY: ${{ secrets.DK }}
         run: |
           mkdir -p ~/.ssh/
-          echo -e "$SSH_KEY" > ~/.ssh/key
-          cat ~/.ssh/private.key
-          chmod 666 ~/.ssh/key
+          echo -e "$SSH_KEY" > ~/.ssh/id_ecdsa
+          cat ~/.ssh/id_ecdsa
+          chmod 600 ~/.ssh/id_ecdsa
           ssh -o PubkeyAuthentication=yes -o stricthostkeychecking=no -T git@github.com
 
 # ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
