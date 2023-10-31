@@ -24,33 +24,36 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      with:
+        key: ${{ secrets.DK }}
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
         # with:
           # token: ${{ secrets.DK }}
           
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: pwd && ls -la
-        
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+
+
+      - name: edit
         run: |
           bash ./zun.sh
-          echo -e "---\n"
-          cd ~/ && pwd && mkdir -p .ssh
-          ls -la /home/runner/.ssh/
-          echo "Host github" > /home/runner/.ssh/config
-          echo "	HostName github.com " >> /home/runner/.ssh/config
-          echo "    AddKeysToAgent yes " >> /home/runner/.ssh/config
-          echo "    PreferredAuthentications publickey " >> /home/runner/.ssh/config
-          echo "    IdentityFile /home/runner/.ssh/key" >> /home/runner/.ssh/config
+
+      - name: git-ssh
+        env:
+          HOST: github.com
+        
+        run: |
+          mkdir -p ~/.ssh/
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+#   echo -e "$SSH_KEY" > ~/.ssh/key
 
       - name: GIT
         env:
           GIT_NAME: ${{ secrets.GIT_NAME }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-          SSH_KEY: ${{ secrets.DK }}
+        #   SSH_KEY: ${{ secrets.DK }}
         run: |     
-          echo -e "$SSH_KEY" > /home/runner/.ssh/key
           git config  --global user.email "$GIT_EMAIL"
           git config  --global user.name "$GIT_NAME"
           git add .
