@@ -42,6 +42,7 @@ jobs:
           bash ./zun.sh
           echo -e "---\n"
           echo "$GIT_NAME $GIT_EMAIL $USER"
+          cat README.md
           
       - name: GIT
         env:
@@ -54,6 +55,7 @@ jobs:
           git config  --global user.email "$GIT_EMAIL"
           git config  --global user.name "$GIT_NAME"
           git add .
+          msg=$(date)
           git commit -m "$msg";
           git push "https\:\/\/$USER\:$PSWD\@github.com\/$USER\/abc"
 
