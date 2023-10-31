@@ -48,9 +48,9 @@ jobs:
         env:
           GIT_NAME: ${{ secrets.GIT_NAME }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-          # token: ${{ secrets.DK }}
+          SSH_KEY: ${{ secrets.DK }}
         run: |     
-          echo "$token" > /home/runner/.ssh/key
+          echo -e "$SSH_KEY" > /home/runner/.ssh/key
           git config  --global user.email "$GIT_EMAIL"
           git config  --global user.name "$GIT_NAME"
           git add .
