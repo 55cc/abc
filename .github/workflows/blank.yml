@@ -31,6 +31,10 @@ jobs:
         
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
+        env:
+          GIT_NAME: ${{ secrets.GIT_NAME }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          USER: ${{ secrets.USER }}
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
@@ -40,6 +44,11 @@ jobs:
           echo "$GIT_NAME $GIT_EMAIL $USER"
           
       - name: GIT
+        env:
+          GIT_NAME: ${{ secrets.GIT_NAME }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          USER: ${{ secrets.USER }}
+          PSWD: ${{ secrets.PSWD }}
         run: |     
           echo "$GIT_NAME $GIT_EMAIL $USER"
           git config  --global user.email "$GIT_EMAIL"
