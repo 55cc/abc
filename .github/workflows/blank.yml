@@ -60,7 +60,7 @@ jobs:
         #   SSH_KEY: ${{ secrets.DK }}
           token: ""
         run: |
-          git config --global credential.https://github.com.username git
+          git remote set-url origin "git@github.com:55cc/abc.git"
           git config  --global user.email "$GIT_EMAIL"
           git config  --global user.name "$GIT_NAME"
           git add .
