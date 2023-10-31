@@ -34,6 +34,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          pwd
-          echo "---"
-          ls -la
+          bash ./zun.sh
