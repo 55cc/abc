@@ -49,7 +49,7 @@ jobs:
           cat ~/.ssh/private.key
           chmod 666 ~/.ssh/private.key
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-          ssh -T git@github.com
+          ssh -T 55cc@github.com
 
       - name: GIT
         env:
