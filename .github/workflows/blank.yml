@@ -24,9 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      with:
-        key: ${{ secrets.DK }}
-        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+        with:
+          key: ${{ secrets.DK }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
         # with:
           # token: ${{ secrets.DK }}
           
