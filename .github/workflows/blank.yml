@@ -48,8 +48,7 @@ jobs:
         env:
           GIT_NAME: ${{ secrets.GIT_NAME }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-          USER: ${{ secrets.USER }}
-          PSWD: ${{ secrets.PSWD }}
+          token: ${{ secrets.DK }}
         run: |     
           echo "$GIT_NAME $GIT_EMAIL $USER"
           git config  --global user.email "$GIT_EMAIL"
@@ -57,5 +56,5 @@ jobs:
           git add .
           msg=$(date)
           git commit -m "$msg";
-          git push "https://$USER:$PSWD@github.com/$USER/abc"
+          git push
 
