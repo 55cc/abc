@@ -1,69 +1,19 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Test
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        with:
-          key: ${{ secrets.DK }}
-          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
-        # with:
-          # token: ${{ secrets.DK }}
           
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: pwd && ls -la
 
-
-      - name: edit
-        run: |
-          bash ./zun.sh
-
-      - name: git-ssh
-        env:
-          HOST: github.com
-          SSH_KEY: ${{ secrets.DK }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo -e "$SSH_KEY" > ~/.ssh/id_ecdsa
-          cat ~/.ssh/id_ecdsa
-          chmod 600 ~/.ssh/id_ecdsa
-          ssh -o PubkeyAuthentication=yes -o stricthostkeychecking=no -T git@github.com || echo "skip"
-
-# ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-# ssh -T 55cc@github.com
-
-      - name: GIT
-        env:
-          GIT_NAME: ${{ secrets.GIT_NAME }}
-          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-          token: ""
-        run: |
-          git remote set-url origin "git@github.com:$GITHUB_REPOSITORY.git"
-          git config  --global user.email "$GIT_EMAIL"
-          git config  --global user.name "$GIT_NAME"
-          git add .
-          msg=$(date)
-          git commit -m "$msg";
-          git push
 
