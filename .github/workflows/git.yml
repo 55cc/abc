@@ -40,17 +40,18 @@ jobs:
           chmod 600 ~/.ssh/id_ecdsa
           ssh -o PubkeyAuthentication=yes -o stricthostkeychecking=no -T git@github.com || echo "skip"
 
-      - name: Git Config
-        run: |
-          git remote set-url origin "git@github.com:$GITHUB_REPOSITORY.git"
-          # Any legal name and email
-          git config  --global user.email "$GITHUB_ACTOR@empty.site.qwe"
-          git config  --global user.name "$GITHUB_ACTOR-$GITHUB_WORKFLOW"
-
       - name: Edit File
         run: |
           msg="Edit Time: $(date +%s)"
           sed -i "s/<\!-- time -->.*<\!-- time end -->/<\!-- time -->$msg<\!-- time end -->/g" README.md
+
+      - name: Git Config
+        run: |
+          git remote set-url origin "git@github.com:$GITHUB_REPOSITORY.git"
+          # Any legal name and email
+          git config --global user.email "$GITHUB_ACTOR@empty.site.qwe"
+          git config --global user.name "$GITHUB_ACTOR-$GITHUB_WORKFLOW"
+          git config --list
 
       - name: GIT Push
         run: |
