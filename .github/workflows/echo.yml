@@ -27,6 +27,6 @@ jobs:
         run: |
           echo GITHUB_ACTION: ${{ vars.GITHUB_ACTION }}
           echo GITHUB_ACTOR_ID: ${{ vars.GITHUB_ACTOR_ID }}
-         
           echo ACTOR_ID: $ACTOR_ID
+          echo GITHUB_ACTOR_ID: $GITHUB_ACTOR_ID
  # echo GITHUB_ACTOR_ID: ${{ evn.GITHUB_ACTOR_ID }}
