@@ -57,10 +57,9 @@ jobs:
         env:
           GIT_NAME: ${{ secrets.GIT_NAME }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-        #   SSH_KEY: ${{ secrets.DK }}
           token: ""
         run: |
-          git remote set-url origin "git@github.com:55cc/abc.git"
+          git remote set-url origin "git@github.com:$GITHUB_REPOSITORY.git"
           git config  --global user.email "$GIT_EMAIL"
           git config  --global user.name "$GIT_NAME"
           git add .
