@@ -16,8 +16,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Hello
         run: echo Hello, world!
         
       - name: Share Vars
@@ -25,9 +24,11 @@ jobs:
         run: |
           echo "abc=abc123" >> $GITHUB_OUTPUT
           echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+          sleep 1s
 
-      - name: Run a multi-line script
+      - name: Vars list
         run: |
+          sleep 1s
           echo share abc: ${{ steps.share.outputs.abc }}
           echo time: $(date +%s)
           echo share time: ${{ steps.share.outputs.time }}
