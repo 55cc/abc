@@ -39,10 +39,18 @@ jobs:
           cat ~/.ssh/id_ecdsa
           chmod 600 ~/.ssh/id_ecdsa
           ssh -o PubkeyAuthentication=yes -o stricthostkeychecking=no -T git@github.com || echo "skip"
-
+      
+      - name: Share Vars
+        id: share
+        # Asia/Shanghai
+        # America/New_York
+        # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+        run: |
+          echo "Tag=$(TZ='Asia/Shanghai' date '+%Y-%m-%d.%H.%M.%S')" >> $GITHUB_OUTPUT
+          
       - name: Edit File
         run: |
-          msg="Edit Time: $(date +%s)"
+          msg="Edit Time: ${{ steps.share.outputs.Tag }}"
           sed -i "s/<\!-- time -->.*<\!-- time end -->/<\!-- time -->$msg<\!-- time end -->/g" README.md
 
       - name: Git Config
@@ -56,6 +64,6 @@ jobs:
       - name: GIT Push
         run: |
           git add README.md
-          git commit -m "$GITHUB_WORKFLOW-$(date +%s)";
+          git commit -m "$GITHUB_WORKFLOW-${{ steps.share.outputs.Tag }}";
           git push
 
