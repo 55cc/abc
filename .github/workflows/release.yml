@@ -32,7 +32,7 @@ jobs:
           echo "Hello, world!" > ./wd/hw.txt
           cd ./wd  && pwd
           Tag=$(date '+%Y.%m%d.%H%M.%S')
-          echo “::set-env name=VERSION_TAG::$Tag”
+          echo "::set-env name=VERSION_TAG::'$Tag'"
 
       # Runs a set of commands using the runners shell
           # repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name:  Release-${{ env.VERSION_TAG }}
-          release_name: Release-${{ env.VERSION_TAG }}
+          tag_name:  r.${{ env.VERSION_TAG }}
+          release_name: r.${{ env.VERSION_TAG }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
