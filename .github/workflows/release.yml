@@ -29,7 +29,9 @@ jobs:
       - name: Run a one-line script
         run: |
           mkdir -p ~/wd
-          echo Hello, world! > ~/wd/hw.txt
+          echo "Hello, world!" > ~/wd/hw.txt
+          cd ~/
+          tree
 
       # Runs a set of commands using the runners shell
           # repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -37,7 +39,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ~/wd/*.txt
+          file: ~/wd/
           asset_name: mything
           tag: ${{ github.ref }}
           overwrite: true
