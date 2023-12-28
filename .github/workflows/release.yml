@@ -38,8 +38,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: wd
-          asset_name: mything
-          tag: ${{ github.ref }}
+          file: /home/runner/work/abc/abc/wd/*.txt
+          asset_name: mything-${{date '+%Y.%m%d.%H%M.%S'}}
+          tag: ${{ github.ref }}-test-${{date '+%Y.%m%d.%H%M.%S'}}
           overwrite: true
           body: "This is my release text"
