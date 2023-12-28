@@ -40,6 +40,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: /home/runner/work/abc/abc/wd/*.txt
           asset_name: mything-${{date '+%Y.%m%d.%H%M.%S'}}
-          tag: ${{ github.ref }}-test-${{date '+%Y.%m%d.%H%M.%S'}}
+          tag: ${{ github.ref }}-test
           overwrite: true
           body: "This is my release text"
