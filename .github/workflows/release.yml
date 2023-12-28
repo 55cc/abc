@@ -34,12 +34,13 @@ jobs:
 
       # Runs a set of commands using the runners shell
           # repo_token: ${{ secrets.GITHUB_TOKEN }}
+          # -${{date '+%Y.%m%d.%H%M.%S'}}
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/abc/abc/wd/*.txt
-          asset_name: mything-${{date '+%Y.%m%d.%H%M.%S'}}
+          file: "/home/runner/work/abc/abc/wd/*.txt"
+          asset_name: mything
           tag: ${{ github.ref }}-test
           overwrite: true
           body: "This is my release text"
