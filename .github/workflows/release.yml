@@ -30,7 +30,9 @@ jobs:
         run: |
           mkdir -p ./wd
           echo "Hello, world!" > ./wd/hw.txt
-          cd ./wd  && pwd
+          zip -r wd.zip ./wd/
+          pwd && ls
+          
           Tag=$(date '+%Y.%m%d.%H%M.%S')
           echo "VERSION_TAG=$Tag" >> "$GITHUB_ENV"
 
@@ -54,6 +56,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: /home/runner/work/abc/abc/wd
-          asset_name: /home/runner/work/abc/abc/wd
-          # asset_content_type: application/zip
+          asset_path: /home/runner/work/abc/abc/wd.zip
+          asset_name: wd.zip
+          asset_content_type: application/zip
